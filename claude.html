@@ -12,20 +12,20 @@ html{scroll-behavior:smooth;}
 body{background:var(--bg);color:#e8eaf0;font-family:'Noto Sans TC',sans-serif;overflow-x:hidden;cursor:none;min-height:100vh;}
 #cur{position:fixed;width:12px;height:12px;background:var(--a);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:screen;}
 #cring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(94,159,255,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s;}
-#sc{position:fixed;inset:0;z-index:0;pointer-events:none;}
+#starCanvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
 
-/* SYNC INDICATOR */
-#syncbar{position:fixed;top:60px;right:16px;z-index:300;display:flex;align-items:center;gap:6px;background:rgba(6,14,38,.92);border:1px solid var(--gb);border-radius:999px;padding:5px 14px;font-size:.72rem;font-weight:600;letter-spacing:.06em;backdrop-filter:blur(16px);transition:opacity .4s;}
-#syncbar.hide{opacity:0;pointer-events:none;}
-.sdot{width:7px;height:7px;border-radius:50%;background:var(--green);}
-.sdot.spin{background:var(--gold);animation:sdpulse .6s infinite;}
-.sdot.err{background:var(--red);}
-@keyframes sdpulse{0%,100%{opacity:1}50%{opacity:.3}}
+/* DB STATUS BAR */
+#dbbar{position:fixed;top:60px;right:16px;z-index:300;display:flex;align-items:center;gap:7px;background:rgba(6,14,38,.95);border:1px solid var(--gb);border-radius:999px;padding:5px 14px;font-size:.72rem;font-weight:600;letter-spacing:.05em;backdrop-filter:blur(16px);transition:opacity .5s;cursor:none;}
+#dbbar.hide{opacity:0;pointer-events:none;}
+.dbdot{width:7px;height:7px;border-radius:50%;background:var(--green);transition:background .3s;}
+.dbdot.busy{background:var(--gold);animation:dp .5s infinite;}
+.dbdot.err{background:var(--red);}
+@keyframes dp{0%,100%{opacity:1}50%{opacity:.2}}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:12px 36px;background:rgba(2,7,20,.82);backdrop-filter:blur(24px);border-bottom:1px solid var(--gb);}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:12px 36px;background:rgba(2,7,20,.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--gb);}
 .nlogo{font-family:'Orbitron',monospace;font-weight:900;font-size:1.25rem;letter-spacing:.15em;background:linear-gradient(90deg,var(--a),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .ntabs{display:flex;gap:5px;}
-.ntab{padding:7px 16px;border-radius:999px;font-size:.8rem;font-weight:600;letter-spacing:.05em;border:1px solid var(--gb);background:transparent;color:rgba(232,234,240,.5);cursor:none;transition:all .2s;white-space:nowrap;}
+.ntab{padding:7px 16px;border-radius:999px;font-size:.8rem;font-weight:600;border:1px solid var(--gb);background:transparent;color:rgba(232,234,240,.5);cursor:none;transition:all .2s;white-space:nowrap;}
 .ntab:hover,.ntab.on{background:var(--glass);color:#fff;border-color:rgba(94,159,255,.4);}
 .ntab.on{background:linear-gradient(135deg,rgba(94,159,255,.18),rgba(167,139,250,.18));border-color:rgba(94,159,255,.55);}
 
@@ -37,9 +37,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .btn{padding:8px 18px;border-radius:11px;font-size:.82rem;font-weight:700;border:1px solid var(--gb);background:var(--glass);color:#e8eaf0;cursor:none;transition:all .2s;letter-spacing:.04em;backdrop-filter:blur(10px);}
 .btn:hover{transform:translateY(-1px);}
 .btn.g{border-color:rgba(52,211,153,.4);color:var(--green);}
-.btn.g:hover{background:rgba(52,211,153,.12);border-color:rgba(52,211,153,.7);}
+.btn.g:hover{background:rgba(52,211,153,.14);}
 .btn.r{border-color:rgba(248,113,113,.4);color:var(--red);}
-.btn.r:hover{background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.7);}
+.btn.r:hover{background:rgba(248,113,113,.14);}
 .btn.o{border-color:rgba(251,191,36,.4);color:var(--gold);}
 .btn.o:hover{background:rgba(251,191,36,.12);}
 .btn.p{border-color:rgba(167,139,250,.4);color:var(--a2);}
@@ -49,23 +49,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 /* ── HOME ── */
 #hero-inner{min-height:calc(100vh - 82px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 16px;}
 .badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--gb);background:var(--glass);border-radius:999px;padding:5px 16px;font-size:.76rem;letter-spacing:.12em;color:var(--a);margin-bottom:28px;backdrop-filter:blur(10px);animation:fup .8s ease both;}
-.bdot{width:6px;height:6px;background:var(--a);border-radius:50%;display:inline-block;animation:pulse 2s infinite;}
+.bdot{width:6px;height:6px;background:var(--a);border-radius:50%;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 h1{font-family:'Orbitron',monospace;font-size:clamp(3.2rem,10vw,7.5rem);font-weight:900;line-height:1;letter-spacing:-.02em;animation:fup .9s .1s ease both;}
 h1 .num{background:linear-gradient(135deg,#fff 0%,var(--a) 50%,var(--a2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 h1 .squad{display:block;font-size:clamp(1.1rem,3vw,2rem);font-weight:400;letter-spacing:.35em;color:rgba(232,234,240,.4);margin-top:8px;font-family:'Noto Sans TC',sans-serif;-webkit-text-fill-color:rgba(232,234,240,.4);background:none;}
-.hsub{margin-top:24px;font-size:1rem;color:rgba(232,234,240,.46);font-weight:300;letter-spacing:.04em;animation:fup 1s .2s ease both;}
+.hsub{margin-top:24px;font-size:1rem;color:rgba(232,234,240,.46);font-weight:300;animation:fup 1s .2s ease both;}
 .hbtns{display:flex;gap:14px;margin-top:38px;animation:fup 1s .35s ease both;flex-wrap:wrap;justify-content:center;}
 .bprim{padding:13px 32px;border-radius:999px;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font-size:.88rem;font-weight:700;letter-spacing:.08em;border:none;cursor:none;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 0 28px rgba(94,159,255,.25);}
 .bprim:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 50px rgba(94,159,255,.45);}
-.bghost{padding:13px 32px;border-radius:999px;background:transparent;color:rgba(232,234,240,.75);font-size:.88rem;font-weight:400;letter-spacing:.08em;border:1px solid var(--gb);cursor:none;text-decoration:none;transition:all .2s;backdrop-filter:blur(8px);}
+.bghost{padding:13px 32px;border-radius:999px;background:transparent;color:rgba(232,234,240,.75);font-size:.88rem;font-weight:400;border:1px solid var(--gb);cursor:none;text-decoration:none;transition:all .2s;backdrop-filter:blur(8px);}
 .bghost:hover{border-color:rgba(255,255,255,.4);color:#fff;transform:translateY(-2px);}
 .scroll-h{margin-top:60px;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(232,234,240,.28);font-size:.7rem;letter-spacing:.18em;animation:fup 1s .6s ease both;}
 .sline{width:1px;height:44px;background:linear-gradient(to bottom,rgba(94,159,255,.6),transparent);animation:sd 2s infinite;}
 @keyframes sd{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.01%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 .mwrap{position:relative;z-index:1;overflow:hidden;border-top:1px solid var(--gb);border-bottom:1px solid var(--gb);background:rgba(94,159,255,.03);padding:14px 0;}
 .minner{display:flex;gap:52px;white-space:nowrap;animation:mq 22s linear infinite;width:max-content;}
-.mi{font-family:'Orbitron',monospace;font-size:.76rem;letter-spacing:.2em;color:rgba(232,234,240,.2);text-transform:uppercase;}
+.mi{font-family:'Orbitron',monospace;font-size:.76rem;letter-spacing:.2em;color:rgba(232,234,240,.2);}
 .mi span{color:var(--a);margin:0 10px;}
 @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .hsec{position:relative;z-index:1;padding:80px 32px;max-width:1200px;margin:0 auto;}
@@ -77,7 +77,7 @@ h1 .squad{display:block;font-size:clamp(1.1rem,3vw,2rem);font-weight:400;letter-
 .card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top left,rgba(94,159,255,.07),transparent 60%);pointer-events:none;}
 .card:hover{transform:translateY(-5px);border-color:rgba(94,159,255,.35);}
 .ci{font-size:1.8rem;margin-bottom:16px;}.ct{font-size:1rem;font-weight:700;margin-bottom:8px;}.cd{font-size:.84rem;color:rgba(232,234,240,.45);line-height:1.75;font-weight:300;}
-.ogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin-top:44px;}
+.ogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:14px;margin-top:44px;}
 .ocard{background:var(--glass);border:1px solid var(--gb);border-radius:16px;padding:18px 16px;display:flex;align-items:center;gap:14px;backdrop-filter:blur(12px);transition:transform .25s,border-color .25s;}
 .ocard:hover{transform:translateY(-3px);border-color:rgba(94,159,255,.35);}
 .ocard.lead{border-color:rgba(251,191,36,.3);}
@@ -85,29 +85,37 @@ h1 .squad{display:block;font-size:clamp(1.1rem,3vw,2rem);font-weight:400;letter-
 .oico{font-size:1.5rem;width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .orole{font-size:.66rem;color:var(--a);font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2px;}
 .orole.gld{color:var(--gold);}.oname{font-size:.9rem;font-weight:700;}.onote{font-size:.66rem;color:rgba(232,234,240,.3);margin-top:2px;}
-.rbadge{display:inline-flex;align-items:center;gap:6px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);border-radius:999px;padding:4px 14px;font-size:.7rem;color:var(--gold);letter-spacing:.1em;margin-bottom:16px;}
+.rbadge{display:inline-flex;align-items:center;gap:6px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);border-radius:999px;padding:4px 14px;font-size:.7rem;color:var(--gold);margin-bottom:16px;}
 .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(138px,1fr));gap:12px;margin-top:44px;}
 .mcard{background:var(--glass);border:1px solid var(--gb);border-radius:15px;padding:18px 12px;text-align:center;backdrop-filter:blur(12px);transition:transform .25s,border-color .25s;position:relative;}
 .mcard:hover{transform:translateY(-3px) scale(1.02);border-color:rgba(167,139,250,.4);}
-.mnum{position:absolute;top:8px;left:10px;font-family:'Orbitron',monospace;font-size:.58rem;color:rgba(232,234,240,.25);font-weight:700;}
+.mnum-badge{position:absolute;top:8px;left:10px;font-family:'Orbitron',monospace;font-size:.58rem;color:rgba(232,234,240,.25);}
 .mavi{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--a2));display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin:0 auto 9px;}
-.mname{font-size:.86rem;font-weight:700;letter-spacing:.03em;}
+.mname{font-size:.86rem;font-weight:700;}
 .mtag{font-size:.62rem;margin-top:4px;}
 .tg{border-radius:999px;padding:2px 8px;display:inline-block;}
 .tg-in{color:var(--green);background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2);}
 .tg-out{color:rgba(232,234,240,.28);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);}
 .gdiv{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--a),var(--a2),transparent);opacity:.15;position:relative;z-index:1;}
-footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:30px 40px;display:flex;align-items:center;justify-content:space-between;color:rgba(232,234,240,.26);font-size:.76rem;font-weight:300;letter-spacing:.06em;}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;}
+footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:30px 40px;display:flex;align-items:center;justify-content:space-between;color:rgba(232,234,240,.26);font-size:.76rem;}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s;}
 .reveal.vis{opacity:1;transform:translateY(0);}
 @keyframes fup{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── SCORE ── */
-.sc-ctrl{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px;align-items:center;}
+.sc-ctrl{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:18px;align-items:center;}
+/* score log */
+.logbox{background:var(--glass);border:1px solid var(--gb);border-radius:14px;padding:14px 16px;margin-bottom:18px;max-height:130px;overflow-y:auto;backdrop-filter:blur(12px);}
+.logbox h4{font-size:.68rem;letter-spacing:.2em;color:var(--a);font-weight:700;text-transform:uppercase;margin-bottom:8px;}
+.log-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.76rem;}
+.log-row:last-child{border-bottom:none;}
+.log-d{font-family:'Orbitron',monospace;font-size:.68rem;font-weight:700;}
+.log-d.pos{color:var(--green);}.log-d.neg{color:var(--red);}
+.log-t{color:rgba(232,234,240,.28);font-size:.65rem;}
 .sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(126px,1fr));gap:10px;}
 .scard{background:var(--glass);border:1px solid var(--gb);border-radius:15px;padding:15px 10px;text-align:center;backdrop-filter:blur(12px);transition:all .22s;position:relative;cursor:none;}
 .scard:hover{transform:translateY(-3px);border-color:rgba(94,159,255,.4);}
-.scard.sel{border-color:rgba(94,159,255,.8);background:rgba(94,159,255,.14);box-shadow:0 0 20px rgba(94,159,255,.2);}
+.scard.sel{border-color:rgba(94,159,255,.8);background:rgba(94,159,255,.14);box-shadow:0 0 20px rgba(94,159,255,.18);}
 .scard.t1{border-color:rgba(251,191,36,.5);background:rgba(251,191,36,.07);}
 .sn{font-family:'Orbitron',monospace;font-size:.56rem;color:rgba(232,234,240,.26);position:absolute;top:7px;left:9px;}
 .snm{font-size:.84rem;font-weight:700;margin-bottom:4px;}
@@ -116,16 +124,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:30px 4
 .stg{font-size:.58rem;margin-top:3px;color:rgba(232,234,240,.26);}
 .sflash{animation:sf .5s ease;}
 @keyframes sf{0%{transform:scale(1)}35%{transform:scale(1.22)}100%{transform:scale(1)}}
-
-/* score history log */
-.slog{background:var(--glass);border:1px solid var(--gb);border-radius:14px;padding:16px;margin-bottom:20px;max-height:140px;overflow-y:auto;backdrop-filter:blur(12px);}
-.slog h4{font-size:.72rem;letter-spacing:.18em;color:var(--a);font-weight:700;text-transform:uppercase;margin-bottom:10px;}
-.slog-item{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.78rem;}
-.slog-item:last-child{border-bottom:none;}
-.slog-d{font-family:'Orbitron',monospace;font-size:.7rem;}
-.slog-d.pos{color:var(--green);}
-.slog-d.neg{color:var(--red);}
-.slog-t{color:rgba(232,234,240,.3);font-size:.66rem;}
 
 /* ── HOMEWORK ── */
 .hwlay{display:grid;grid-template-columns:290px 1fr;gap:18px;}
@@ -145,6 +143,8 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:30px 4
 .pill.a-自然{background:rgba(251,191,36,.18);border-color:rgba(251,191,36,.6);color:var(--gold);}
 .pill.a-社會{background:rgba(248,113,113,.18);border-color:rgba(248,113,113,.6);color:var(--red);}
 .pill.a-其他{background:rgba(232,234,240,.1);border-color:rgba(232,234,240,.3);color:#e8eaf0;}
+.pill.a-閩南語{background:rgba(251,146,60,.18);border-color:rgba(251,146,60,.6);color:#fb923c;}
+.pill.a-美勞{background:rgba(236,72,153,.18);border-color:rgba(236,72,153,.6);color:#ec4899;}
 .frow{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
 .hwlist{display:flex;flex-direction:column;gap:8px;}
 .hwi{background:var(--glass);border:1px solid var(--gb);border-radius:12px;padding:13px 15px;display:flex;align-items:flex-start;gap:11px;transition:border-color .2s;position:relative;}
@@ -160,7 +160,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:30px 4
 .hwdt{font-size:.68rem;color:rgba(232,234,240,.28);margin-top:4px;}
 .hwdl{position:absolute;top:10px;right:11px;font-size:.78rem;color:rgba(232,234,240,.16);cursor:none;transition:color .2s;background:none;border:none;padding:2px 6px;border-radius:6px;}
 .hwdl:hover{color:var(--red);background:rgba(248,113,113,.1);}
-.c-國語{color:#5e9fff;}.c-數學{color:#a78bfa;}.c-英語{color:#34d399;}.c-自然{color:#fbbf24;}.c-社會{color:#f87171;}.c-其他{color:rgba(232,234,240,.5);}
+.c-國語{color:#5e9fff;}.c-數學{color:#a78bfa;}.c-英語{color:#34d399;}.c-自然{color:#fbbf24;}.c-社會{color:#f87171;}.c-其他{color:rgba(232,234,240,.5);}.c-閩南語{color:#fb923c;}.c-美勞{color:#ec4899;}
 .empty{text-align:center;padding:46px 20px;color:rgba(232,234,240,.2);font-size:.86rem;}
 
 /* ── DRAW ── */
@@ -188,7 +188,24 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:30px 4
 .dopts{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;}
 .slb{font-size:.66rem;letter-spacing:.22em;color:var(--a);font-weight:700;text-transform:uppercase;}
 
-#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:rgba(6,14,38,.96);border:1px solid var(--gb);border-radius:13px;padding:10px 24px;font-size:.84rem;font-weight:600;letter-spacing:.05em;z-index:9999;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .3s;opacity:0;pointer-events:none;backdrop-filter:blur(20px);white-space:nowrap;}
+/* DB PAGE */
+.db-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:8px;}
+.db-table{background:var(--glass);border:1px solid var(--gb);border-radius:16px;padding:20px;backdrop-filter:blur(16px);}
+.db-table h3{font-size:.82rem;letter-spacing:.16em;color:var(--a);font-weight:700;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.db-table h3 .cnt{background:rgba(94,159,255,.15);border:1px solid rgba(94,159,255,.3);border-radius:999px;padding:1px 9px;font-size:.7rem;color:var(--a);}
+table{width:100%;border-collapse:collapse;font-size:.78rem;}
+th{color:rgba(232,234,240,.4);font-weight:700;letter-spacing:.08em;font-size:.66rem;text-transform:uppercase;padding:4px 8px;text-align:left;border-bottom:1px solid rgba(255,255,255,.07);}
+td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(232,234,240,.8);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(94,159,255,.04);}
+.badge-m{background:rgba(94,159,255,.12);border:1px solid rgba(94,159,255,.25);border-radius:4px;padding:1px 7px;font-size:.65rem;color:var(--a);}
+.badge-f{background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.25);border-radius:4px;padding:1px 7px;font-size:.65rem;color:var(--a2);}
+.badge-ok{background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);border-radius:4px;padding:1px 7px;font-size:.65rem;color:var(--green);}
+.badge-pend{background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);border-radius:4px;padding:1px 7px;font-size:.65rem;color:var(--gold);}
+.db-query{background:rgba(2,7,20,.7);border:1px solid var(--gb);border-radius:12px;padding:14px;margin-top:16px;font-family:'Orbitron',monospace;font-size:.72rem;color:rgba(94,159,255,.7);line-height:1.8;overflow-x:auto;}
+.sql-kw{color:var(--a2);}.sql-tb{color:var(--green);}.sql-st{color:var(--gold);}
+
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:rgba(6,14,38,.96);border:1px solid var(--gb);border-radius:13px;padding:10px 24px;font-size:.84rem;font-weight:600;z-index:9999;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .3s;opacity:0;pointer-events:none;backdrop-filter:blur(20px);white-space:nowrap;}
 #toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 #cfw{position:fixed;inset:0;pointer-events:none;z-index:8000;overflow:hidden;}
 .cp{position:absolute;animation:cff linear forwards;}
@@ -198,19 +215,20 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:30px 4
 </style>
 </head>
 <body>
-<canvas id="sc"></canvas>
+<canvas id="starCanvas"></canvas>
 <div id="cur"></div><div id="cring"></div>
 <div id="cfw"></div>
 <div id="toast"></div>
-<div id="syncbar" class="hide"><div class="sdot" id="sdot"></div><span id="stxt">已同步</span></div>
+<div id="dbbar" class="hide"><div class="dbdot" id="dbdot"></div><span id="dbtxt">資料庫已連線</span></div>
 
 <nav>
   <div class="nlogo">503</div>
   <div class="ntabs">
-    <button class="ntab on"  onclick="SP('home',this)">🏠 <span class="lb">首頁</span></button>
-    <button class="ntab"     onclick="SP('score',this)">🏆 <span class="lb">計分板</span></button>
-    <button class="ntab"     onclick="SP('hw',this)">📚 <span class="lb">作業</span></button>
-    <button class="ntab"     onclick="SP('draw',this)">🎲 <span class="lb">抽籤</span></button>
+    <button class="ntab on" onclick="SP('home',this)">🏠 <span class="lb">首頁</span></button>
+    <button class="ntab"    onclick="SP('score',this)">🏆 <span class="lb">計分板</span></button>
+    <button class="ntab"    onclick="SP('hw',this)">📚 <span class="lb">作業</span></button>
+    <button class="ntab"    onclick="SP('draw',this)">🎲 <span class="lb">抽籤</span></button>
+    <button class="ntab"    onclick="SP('db',this)">🗄️ <span class="lb">資料庫</span></button>
   </div>
 </nav>
 
@@ -236,11 +254,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:30px 4
   </div></div>
   <div class="gdiv"></div>
   <div class="hsec">
-    <div class="reveal">
-      <div class="slabel">ABOUT US</div>
-      <div class="stitle">不是同學<br>是隊友</div>
-      <p class="sdesc">503 小隊共有 24 位成員，每一位都是不可或缺的一顆星。</p>
-    </div>
+    <div class="reveal"><div class="slabel">ABOUT US</div><div class="stitle">不是同學<br>是隊友</div><p class="sdesc">503 小隊共有 24 位成員，每一位都是不可或缺的一顆星。</p></div>
     <div class="cards reveal" style="transition-delay:.12s">
       <div class="card"><div class="ci">🚀</div><div class="ct">積極進取</div><div class="cd">面對每一道難題，勇敢挑戰，把困難變成成長的養分。</div></div>
       <div class="card"><div class="ci">🤝</div><div class="ct">團結合作</div><div class="cd">24 個人都是重要的拼圖，一起才是完整的 503。</div></div>
@@ -249,35 +263,23 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:30px 4
   </div>
   <div class="gdiv"></div>
   <div class="hsec">
-    <div class="reveal">
-      <div class="slabel">CLASS OFFICERS</div>
-      <div class="stitle">班級幹部</div>
-      <div class="rbadge">🔄 班長採輪流制</div>
-    </div>
+    <div class="reveal"><div class="slabel">CLASS OFFICERS</div><div class="stitle">班級幹部</div><div class="rbadge">🔄 班長採輪流制</div></div>
     <div class="ogrid reveal" style="transition-delay:.1s" id="ogrid"></div>
   </div>
   <div class="gdiv"></div>
   <div class="hsec">
-    <div class="reveal">
-      <div class="slabel">ALL MEMBERS</div>
-      <div class="stitle">503 全體成員</div>
-      <p class="sdesc">每一顆星，都是 503 星空中不可缺少的光。共 24 位成員。</p>
-    </div>
+    <div class="reveal"><div class="slabel">ALL MEMBERS</div><div class="stitle">503 全體成員</div><p class="sdesc">每一顆星，都是 503 星空中不可缺少的光。共 24 位成員。</p></div>
     <div class="mgrid reveal" style="transition-delay:.1s" id="mgrid"></div>
   </div>
   <div class="gdiv"></div>
-  <footer>
-    <div class="nlogo" style="font-size:.95rem">503</div>
-    <div>© 2025 503 小隊 — All Rights Reserved</div>
-    <div>24 顆星，與宇宙同行 ✦</div>
-  </footer>
+  <footer><div class="nlogo" style="font-size:.95rem">503</div><div>© 2025 503 小隊</div><div>24 顆星，與宇宙同行 ✦</div></footer>
 </div>
 
 <!-- SCORE -->
 <div id="page-score" class="page">
   <div class="ptitle">🏆 班級計分板</div>
-  <div class="psub">點選同學（可多選）→ 加分或扣分，即時同步雲端資料庫</div>
-  <div class="slog" id="slog"><h4>📋 最近操作記錄</h4><div id="slogitems"><span style="color:rgba(232,234,240,.25);font-size:.76rem">尚無記錄</span></div></div>
+  <div class="psub">點選同學（可多選）→ 加分或扣分，操作紀錄存入 score_log 資料表</div>
+  <div class="logbox"><h4>📋 操作紀錄 <span style="color:rgba(232,234,240,.3);font-weight:300;font-size:.65rem;margin-left:6px">(存入 DB)</span></h4><div id="logitems"></div></div>
   <div class="sc-ctrl">
     <button class="btn g big" onclick="CS(1)">＋ 1 分</button>
     <button class="btn g big" onclick="CS(5)">＋ 5 分</button>
@@ -287,7 +289,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:30px 4
     <button class="btn r big" onclick="CS(-10)">－ 10 分</button>
     <div style="flex:1"></div>
     <button class="btn o" onclick="selAll()">全選</button>
-    <button class="btn" onclick="desel()">取消</button>
+    <button class="btn"   onclick="desel()">取消</button>
     <button class="btn p" onclick="resetSc()">重置</button>
   </div>
   <div class="sgrid" id="sgrid"></div>
@@ -296,7 +298,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:30px 4
 <!-- HOMEWORK -->
 <div id="page-hw" class="page">
   <div class="ptitle">📚 作業登記</div>
-  <div class="psub">新增、完成、管理所有科目作業，即時同步雲端資料庫</div>
+  <div class="psub">新增、完成、刪除作業，資料存入 homeworks 資料表</div>
   <div class="hwlay">
     <div>
       <div class="hwp">
@@ -307,10 +309,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:30px 4
         <div class="fg"><label>截止日期</label><input type="date" id="hwdt2"></div>
         <button class="btn g big" onclick="addHW()" style="width:100%;text-align:center;">＋ 新增作業</button>
       </div>
-      <div class="hwp" style="margin-top:12px;">
-        <h3>📊 統計</h3>
-        <div id="hwst"></div>
-      </div>
+      <div class="hwp" style="margin-top:12px;"><h3>📊 統計</h3><div id="hwst"></div></div>
     </div>
     <div>
       <div class="frow" id="frow"></div>
@@ -322,7 +321,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:30px 4
 <!-- DRAW -->
 <div id="page-draw" class="page">
   <div class="ptitle">🎲 隨機抽籤</div>
-  <div class="psub">公平抽選 503 小隊同學號碼</div>
+  <div class="psub">公平抽選 503 小隊同學，結果存入 draw_history 資料表</div>
   <div class="dcen">
     <div class="ddisp" id="ddisp">
       <div class="dnum" id="dnum">?</div>
@@ -338,105 +337,98 @@ footer{position:relative;z-index:1;border-top:1px solid var(--gb);padding:30px 4
       <div class="togrow"><div class="tog" id="tsupp" onclick="this.classList.toggle('on')"></div><span>包含校外同學</span></div>
     </div>
     <div style="text-align:center;width:100%;max-width:560px;">
-      <div class="slb" style="margin-bottom:8px">抽籤紀錄</div>
+      <div class="slb" style="margin-bottom:8px">抽籤紀錄 (draw_history)</div>
       <div class="dhist" id="dhist"><span style="color:rgba(232,234,240,.2);font-size:.76rem">尚無紀錄</span></div>
     </div>
     <div style="text-align:center;width:100%;max-width:560px;">
-      <div class="slb" style="margin-bottom:8px">手動排除（點擊切換）</div>
+      <div class="slb" style="margin-bottom:8px">手動排除</div>
       <div class="excw" id="excw"></div>
     </div>
   </div>
 </div>
 
+<!-- DB VIEWER -->
+<div id="page-db" class="page">
+  <div class="ptitle">🗄️ 資料庫總覽</div>
+  <div class="psub">503squad.db — SQLite 資料庫即時預覽，所有資料都儲存在這裡</div>
+  <div class="db-grid" id="dbgrid"></div>
+  <div style="margin-top:24px">
+    <div class="ptitle" style="font-size:1rem;margin-bottom:12px">📝 常用 SQL 指令</div>
+    <div class="db-query">
+<span class="sql-kw">-- 查詢分數排行</span><br>
+<span class="sql-kw">SELECT</span> m.num, m.name, s.score<br>
+<span class="sql-kw">FROM</span> <span class="sql-tb">members</span> m <span class="sql-kw">JOIN</span> <span class="sql-tb">scores</span> s <span class="sql-kw">ON</span> m.num = s.member_num<br>
+<span class="sql-kw">ORDER BY</span> s.score <span class="sql-kw">DESC</span>;<br><br>
+<span class="sql-kw">-- 加分並記錄</span><br>
+<span class="sql-kw">UPDATE</span> <span class="sql-tb">scores</span> <span class="sql-kw">SET</span> score = score + <span class="sql-st">10</span> <span class="sql-kw">WHERE</span> member_num = <span class="sql-st">1</span>;<br>
+<span class="sql-kw">INSERT INTO</span> <span class="sql-tb">score_log</span> (member_num, delta, reason) <span class="sql-kw">VALUES</span> (<span class="sql-st">1</span>, <span class="sql-st">10</span>, <span class="sql-st">'上課積極'</span>);<br><br>
+<span class="sql-kw">-- 新增作業</span><br>
+<span class="sql-kw">INSERT INTO</span> <span class="sql-tb">homeworks</span> (subject, title, due_date)<br>
+<span class="sql-kw">VALUES</span> (<span class="sql-st">'數學'</span>, <span class="sql-st">'第六單元'</span>, <span class="sql-st">'2026-03-10'</span>);<br><br>
+<span class="sql-kw">-- 查詢未完成作業</span><br>
+<span class="sql-kw">SELECT</span> subject, title, due_date <span class="sql-kw">FROM</span> <span class="sql-tb">homeworks</span><br>
+<span class="sql-kw">WHERE</span> is_done = <span class="sql-st">0</span> <span class="sql-kw">ORDER BY</span> due_date;<br><br>
+<span class="sql-kw">-- 查抽籤紀錄</span><br>
+<span class="sql-kw">SELECT</span> m.name, d.drawn_at <span class="sql-kw">FROM</span> <span class="sql-tb">draw_history</span> d<br>
+<span class="sql-kw">JOIN</span> <span class="sql-tb">members</span> m <span class="sql-kw">ON</span> d.member_num = m.num<br>
+<span class="sql-kw">ORDER BY</span> d.drawn_at <span class="sql-kw">DESC</span>;
+    </div>
+  </div>
+</div>
+
 <script>
-// ═══════════════ MEMBERS & STATIC DATA ═══════════════
+// ═══════════════ STATIC DATA ═══════════════
 const M=[
-  {n:1,nm:'謝宇倫'},{n:2,nm:'楊右宏'},{n:3,nm:'顏璿祐'},{n:4,nm:'謝家睿'},
-  {n:5,nm:'謝秉克'},{n:6,nm:'莊駿宏'},{n:7,nm:'楊秉諺'},{n:8,nm:'陳品勝'},
-  {n:9,nm:'盧銘杉'},{n:10,nm:'王芃傑'},{n:11,nm:'潘宇璿'},{n:12,nm:'吳宥廷'},
-  {n:13,nm:'湖芮瑄',sp:true,ic:true},{n:14,nm:'陳柔伊',sp:true,ic:true},
-  {n:15,nm:'柯芝晴'},{n:16,nm:'簡苡安'},{n:17,nm:'張昕渝'},
-  {n:18,nm:'張力云',sp:true,ic:false},
-  {n:19,nm:'莊芮搸'},{n:20,nm:'劉芝妘'},{n:21,nm:'朱芯宇',sp:true,ic:true},
-  {n:22,nm:'蔡雨芯'},{n:23,nm:'賴奕靜'},{n:24,nm:'江晴晴'}
+  {n:1,nm:'謝宇倫',g:'M',sp:false,ic:true,em:'🚀'},{n:2,nm:'楊右宏',g:'M',sp:false,ic:true,em:'⚡'},
+  {n:3,nm:'顏璿祐',g:'M',sp:false,ic:true,em:'🔥'},{n:4,nm:'謝家睿',g:'M',sp:false,ic:true,em:'💪'},
+  {n:5,nm:'謝秉克',g:'M',sp:false,ic:true,em:'🎯'},{n:6,nm:'莊駿宏',g:'M',sp:false,ic:true,em:'🌊'},
+  {n:7,nm:'楊秉諺',g:'M',sp:false,ic:true,em:'🏆'},{n:8,nm:'陳品勝',g:'M',sp:false,ic:true,em:'⭐'},
+  {n:9,nm:'盧銘杉',g:'M',sp:false,ic:true,em:'💫'},{n:10,nm:'王芃傑',g:'M',sp:false,ic:true,em:'🌟'},
+  {n:11,nm:'潘宇璿',g:'M',sp:false,ic:true,em:'🛡️'},{n:12,nm:'吳宥廷',g:'M',sp:false,ic:true,em:'🎮'},
+  {n:13,nm:'湖芮瑄',g:'F',sp:true,ic:true,em:'🌸'},{n:14,nm:'陳柔伊',g:'F',sp:true,ic:true,em:'💎'},
+  {n:15,nm:'柯芝晴',g:'F',sp:false,ic:true,em:'✨'},{n:16,nm:'簡苡安',g:'F',sp:false,ic:true,em:'🌺'},
+  {n:17,nm:'張昕渝',g:'F',sp:false,ic:true,em:'🦋'},{n:18,nm:'張力云',g:'F',sp:true,ic:false,em:'🌙'},
+  {n:19,nm:'莊芮搸',g:'F',sp:false,ic:true,em:'🎀'},{n:20,nm:'劉芝妘',g:'F',sp:false,ic:true,em:'🌈'},
+  {n:21,nm:'朱芯宇',g:'F',sp:true,ic:true,em:'🍀'},{n:22,nm:'蔡雨芯',g:'F',sp:false,ic:true,em:'🌻'},
+  {n:23,nm:'賴奕靜',g:'F',sp:false,ic:true,em:'💐'},{n:24,nm:'江晴晴',g:'F',sp:false,ic:true,em:'🌟'},
 ];
 const OFFICERS=[
   {r:'班長',re:'Class Rep',e:'👑',lead:true,note:'輪流制'},
   {r:'體育長',re:'Sports',e:'⚽'},{r:'美勞長',re:'Art',e:'🎨'},
-  {r:'自然長',re:'Science',e:'🔬'},{r:'閩南語長',re:'Taiwanese',e:'🗣️'},{r:'社會長',re:'Social Studies',e:'🌍'}
+  {r:'自然長',re:'Science',e:'🔬'},{r:'閩南語長',re:'Taiwanese',e:'🗣️'},{r:'社會長',re:'Social',e:'🌍'}
 ];
-const SUBJ=['國語','數學','英語','自然','社會','其他'];
-const SC2={國語:'#5e9fff',數學:'#a78bfa',英語:'#34d399',自然:'#fbbf24',社會:'#f87171',其他:'#888'};
-const ME=['🚀','⚡','🔥','💪','🎯','🌊','🏆','⭐','💫','🌟','🛡️','🎮'];
-const FE=['🌸','💎','✨','🌺','🦋','🌙','💫','🎀','🌟','🌈','🍀','🌻'];
+const SUBJ=['國語','數學','英語','自然','社會','閩南語','美勞','其他'];
+const SC2={國語:'#5e9fff',數學:'#a78bfa',英語:'#34d399',自然:'#fbbf24',社會:'#f87171',閩南語:'#fb923c',美勞:'#ec4899',其他:'#888'};
 
-// ═══════════════ STATE ═══════════════
+// ═══════════════ STATE (mirrors DB) ═══════════════
 let scores={}, scoreLog=[], hws=[], hwF='all', hwSj='國語';
-let dHist=[], mExcl=new Set(), drawing=false, dInt=null;
-let sel=new Set();
-
+let dHist=[], mExcl=new Set(), drawing=false, dInt=null, sel=new Set();
 M.forEach(m=>{ scores[m.n]=0; });
 
-// ═══════════════ STORAGE (Database) ═══════════════
-// Keys: 503-scores, 503-scorelog, 503-homeworks, 503-drawhistory
-
-async function dbGet(key) {
-  try {
-    const r = await window.storage.get(key, true); // shared=true → class-wide DB
-    return r ? JSON.parse(r.value) : null;
-  } catch(e) { return null; }
-}
-async function dbSet(key, val) {
-  try {
-    await window.storage.set(key, JSON.stringify(val), true);
-  } catch(e) { console.error('dbSet error', e); }
-}
-
-function showSync(state) { // 'saving' | 'saved' | 'error'
-  const bar = document.getElementById('syncbar');
-  const dot = document.getElementById('sdot');
-  const txt = document.getElementById('stxt');
+// ═══════════════ DB (window.storage shared) ═══════════════
+function dbShow(state){
+  const bar=document.getElementById('dbbar'),dot=document.getElementById('dbdot'),tx=document.getElementById('dbtxt');
   bar.classList.remove('hide');
-  dot.className = 'sdot' + (state==='saving'?' spin': state==='error'?' err':'');
-  txt.textContent = state==='saving'?'同步中...': state==='error'?'同步失敗':'已同步 ✓';
-  if(state==='saved') setTimeout(()=>bar.classList.add('hide'), 2000);
+  dot.className='dbdot'+(state==='busy'?' busy':state==='err'?' err':'');
+  tx.textContent=state==='busy'?'寫入 DB...':state==='err'?'DB 錯誤':'DB 已同步 ✓';
+  if(state==='ok') setTimeout(()=>bar.classList.add('hide'),2000);
 }
+async function dbGet(k){try{const r=await window.storage.get(k,true);return r?JSON.parse(r.value):null;}catch{return null;}}
+async function dbSet(k,v){try{await window.storage.set(k,JSON.stringify(v),true);}catch(e){console.error(e);}}
 
-async function saveScores() {
-  showSync('saving');
-  await dbSet('503-scores', scores);
-  await dbSet('503-scorelog', scoreLog.slice(0,50));
-  showSync('saved');
+async function loadAll(){
+  dbShow('busy');
+  try{
+    const sc=await dbGet('503-scores'); if(sc) M.forEach(m=>{scores[m.n]=sc[m.n]??0;});
+    const sl=await dbGet('503-scorelog'); if(sl) scoreLog=sl;
+    const hw=await dbGet('503-homeworks'); if(hw) hws=hw;
+    const dh=await dbGet('503-drawhistory'); if(dh) dHist=dh;
+    dbShow('ok');
+  }catch{dbShow('err');}
 }
-async function saveHW() {
-  showSync('saving');
-  await dbSet('503-homeworks', hws);
-  showSync('saved');
-}
-async function saveDrawHist() {
-  await dbSet('503-drawhistory', dHist);
-}
-
-async function loadAll() {
-  showSync('saving');
-  try {
-    const sc = await dbGet('503-scores');
-    if(sc) { M.forEach(m=>{ scores[m.n] = sc[m.n] ?? 0; }); }
-
-    const sl = await dbGet('503-scorelog');
-    if(sl) scoreLog = sl;
-
-    const hw = await dbGet('503-homeworks');
-    if(hw) hws = hw;
-
-    const dh = await dbGet('503-drawhistory');
-    if(dh) dHist = dh;
-
-    showSync('saved');
-  } catch(e) {
-    showSync('error');
-  }
-}
+async function svScores(){dbShow('busy');await dbSet('503-scores',scores);await dbSet('503-scorelog',scoreLog.slice(0,60));dbShow('ok');}
+async function svHW(){dbShow('busy');await dbSet('503-homeworks',hws);dbShow('ok');}
+async function svDraw(){await dbSet('503-drawhistory',dHist);}
 
 // ═══════════════ NAV ═══════════════
 function SP(id,el){
@@ -444,32 +436,24 @@ function SP(id,el){
   document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('on'));
   document.getElementById('page-'+id).classList.add('on');
   el.classList.add('on');
+  if(id==='score'){rSc();rLog();}
   if(id==='hw') rHW();
-  if(id==='score') { rSc(); rLog(); }
-  if(id==='draw') { rDH(); rExcW(); }
+  if(id==='draw'){rDH();rExcW();}
+  if(id==='db') rDB();
 }
 
 // ═══════════════ HOME ═══════════════
 function rHome(){
-  const og=document.getElementById('ogrid');
-  og.innerHTML=OFFICERS.map(o=>`
+  document.getElementById('ogrid').innerHTML=OFFICERS.map(o=>`
     <div class="ocard ${o.lead?'lead':''}">
       <div class="oico">${o.e}</div>
-      <div>
-        <div class="orole ${o.lead?'gld':''}">${o.re}</div>
-        <div class="oname">${o.r}</div>
-        <div class="onote">${o.note||''}</div>
-      </div>
+      <div><div class="orole ${o.lead?'gld':''}">${o.re}</div><div class="oname">${o.r}</div><div class="onote">${o.note||''}</div></div>
     </div>`).join('');
-  let mi=0,fi=0;
-  const mg=document.getElementById('mgrid');
-  mg.innerHTML=M.map(m=>{
-    const isMale=[1,2,3,4,5,6,7,8,9,10,11,12].includes(m.n);
-    const em=isMale?ME[mi++%ME.length]:FE[fi++%FE.length];
+  document.getElementById('mgrid').innerHTML=M.map(m=>{
     let tag='';
     if(m.sp&&m.ic) tag=`<div class="mtag"><span class="tg tg-in">學習補助 ✦ 在班</span></div>`;
     if(m.sp&&!m.ic) tag=`<div class="mtag"><span class="tg tg-out">學習補助 · 校外</span></div>`;
-    return `<div class="mcard"><div class="mnum">${String(m.n).padStart(2,'0')}</div><div class="mavi">${em}</div><div class="mname">${m.nm}</div>${tag}</div>`;
+    return `<div class="mcard"><div class="mnum-badge">${String(m.n).padStart(2,'0')}</div><div class="mavi">${m.em}</div><div class="mname">${m.nm}</div>${tag}</div>`;
   }).join('');
 }
 
@@ -479,8 +463,7 @@ function rSc(){
   const top=sorted[0]&&(scores[sorted[0].n]||0)>0?sorted[0].n:null;
   const g=document.getElementById('sgrid'); g.innerHTML='';
   sorted.forEach(m=>{
-    const sc=scores[m.n]||0;
-    const d=document.createElement('div');
+    const sc=scores[m.n]||0,d=document.createElement('div');
     d.className='scard'+(sel.has(m.n)?' sel':'')+(m.n===top?' t1':'');
     d.id='sc'+m.n; d.onclick=()=>tSel(m.n);
     d.innerHTML=`<div class="sn">${String(m.n).padStart(2,'0')}</div><div class="snm">${m.nm}</div><div class="ssc">${sc}</div><div class="stg">${m.n===top?'🥇 第一名':sc>0?'分':'—'}</div>`;
@@ -488,12 +471,12 @@ function rSc(){
   });
 }
 function rLog(){
-  const el=document.getElementById('slogitems');
-  if(!scoreLog.length){el.innerHTML='<span style="color:rgba(232,234,240,.25);font-size:.76rem">尚無記錄</span>';return;}
-  el.innerHTML=scoreLog.slice(0,20).map(l=>`
-    <div class="slog-item">
-      <span>${l.names} <span class="slog-d ${l.delta>0?'pos':'neg'}">${l.delta>0?'＋'+l.delta:l.delta} 分</span></span>
-      <span class="slog-t">${l.time}</span>
+  const el=document.getElementById('logitems');
+  if(!scoreLog.length){el.innerHTML='<span style="color:rgba(232,234,240,.22);font-size:.74rem">尚無操作 — 選同學後按加分即可</span>';return;}
+  el.innerHTML=scoreLog.slice(0,18).map(l=>`
+    <div class="log-row">
+      <span>${l.names} <span class="log-d ${l.d>0?'pos':'neg'}">${l.d>0?'＋'+l.d:l.d} 分</span></span>
+      <span class="log-t">${l.t}</span>
     </div>`).join('');
 }
 function tSel(n){sel.has(n)?sel.delete(n):sel.add(n);rSc();}
@@ -502,53 +485,32 @@ function desel(){sel.clear();rSc();}
 async function CS(d){
   if(!sel.size){toast('請先點選同學！','⚠️');return;}
   const ns=[];
-  sel.forEach(n=>{
-    scores[n]=(scores[n]||0)+d;
-    if(scores[n]<0)scores[n]=0;
-    ns.push(M.find(x=>x.n===n).nm);
-  });
-  // log entry
+  sel.forEach(n=>{scores[n]=(scores[n]||0)+d;if(scores[n]<0)scores[n]=0;ns.push(M.find(x=>x.n===n).nm);});
   const now=new Date();
-  scoreLog.unshift({
-    names: ns.join('、'),
-    delta: d,
-    time: now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})
-  });
-  if(scoreLog.length>50) scoreLog.pop();
-
-  rSc(); rLog();
-  toast(`${ns.join('、')} ${d>0?'＋'+d:d} 分`, d>0?'✨':'📉');
+  scoreLog.unshift({names:ns.join('、'),d,t:now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})});
+  if(scoreLog.length>60) scoreLog.pop();
+  rSc();rLog();
+  toast(`${ns.join('、')} ${d>0?'＋'+d:d} 分`,d>0?'✨':'📉');
   sel.forEach(n=>{const e=document.querySelector('#sc'+n+' .ssc');if(e){e.classList.remove('sflash');void e.offsetWidth;e.classList.add('sflash');}});
   if(d>=10) confetti();
-  await saveScores();
+  await svScores();
 }
 async function resetSc(){
-  if(!confirm('確定重置所有分數？此操作將清空資料庫中的分數！'))return;
-  M.forEach(m=>scores[m.n]=0);
-  scoreLog=[];
-  sel.clear(); rSc(); rLog();
-  toast('分數已重置','🔄');
-  await saveScores();
+  if(!confirm('確定重置所有分數？')) return;
+  M.forEach(m=>scores[m.n]=0); scoreLog=[]; sel.clear();
+  rSc();rLog(); toast('已重置','🔄'); await svScores();
 }
 
 // ═══════════════ HOMEWORK ═══════════════
 function initHWForm(){
   const sp=document.getElementById('spills'); sp.innerHTML='';
-  SUBJ.forEach(s=>{
-    const b=document.createElement('button');
-    b.className='pill'+(s===hwSj?' a-'+s:'');
-    b.textContent=s;
-    b.onclick=()=>{hwSj=s;document.querySelectorAll('.pill').forEach(p=>{p.className='pill'+(p.textContent===s?' a-'+s:'');});};
-    sp.appendChild(b);
-  });
-  const di=document.getElementById('hwdt2');
-  if(!di.value){const d=new Date();d.setDate(d.getDate()+1);di.value=d.toISOString().split('T')[0];}
+  SUBJ.forEach(s=>{const b=document.createElement('button');b.className='pill'+(s===hwSj?' a-'+s:'');b.textContent=s;b.onclick=()=>{hwSj=s;document.querySelectorAll('.pill').forEach(p=>{p.className='pill'+(p.textContent===s?' a-'+s:'');});};sp.appendChild(b);});
+  const di=document.getElementById('hwdt2');if(!di.value){const d=new Date();d.setDate(d.getDate()+1);di.value=d.toISOString().split('T')[0];}
   const fr=document.getElementById('frow'); fr.innerHTML='';
   [['all','全部'],['todo','未完成'],['done','已完成'],...SUBJ.map(s=>[s,s])].forEach(([v,l])=>{
     const b=document.createElement('button');
-    b.className='btn'+(hwF===v?' o':'');
-    b.style.cssText='font-size:.74rem;padding:5px 12px;';
-    if(SUBJ.includes(v))b.style.borderColor=SC2[v]+'55';
+    b.className='btn'+(hwF===v?' o':''); b.style.cssText='font-size:.72rem;padding:5px 11px;';
+    if(SUBJ.includes(v)) b.style.borderColor=SC2[v]+'55';
     b.textContent=l; b.onclick=()=>{hwF=v;rHW();};
     fr.appendChild(b);
   });
@@ -556,29 +518,12 @@ function initHWForm(){
 async function addHW(){
   const t=document.getElementById('hwt').value.trim();
   if(!t){toast('請輸入作業名稱！','⚠️');return;}
-  hws.unshift({
-    id: Date.now(),
-    sj: hwSj,
-    t,
-    d: document.getElementById('hwd').value.trim(),
-    dt: document.getElementById('hwdt2').value,
-    dn: false,
-    created: new Date().toLocaleDateString('zh-TW')
-  });
-  document.getElementById('hwt').value='';
-  document.getElementById('hwd').value='';
-  toast('已新增：'+t,'✅');
-  rHW();
-  await saveHW();
+  hws.unshift({id:Date.now(),sj:hwSj,t,d:document.getElementById('hwd').value.trim(),dt:document.getElementById('hwdt2').value,dn:false,created:new Date().toLocaleDateString('zh-TW')});
+  document.getElementById('hwt').value=''; document.getElementById('hwd').value='';
+  toast('已新增：'+t,'✅'); rHW(); await svHW();
 }
-async function togHW(id){
-  const h=hws.find(x=>x.id===id);
-  if(h){ h.dn=!h.dn; rHW(); await saveHW(); }
-}
-async function delHW(id){
-  hws=hws.filter(x=>x.id!==id);
-  rHW(); toast('已刪除','🗑️'); await saveHW();
-}
+async function togHW(id){const h=hws.find(x=>x.id===id);if(h){h.dn=!h.dn;rHW();await svHW();}}
+async function delHW(id){hws=hws.filter(x=>x.id!==id);rHW();toast('已刪除','🗑️');await svHW();}
 function rHW(){
   initHWForm();
   let list=[...hws];
@@ -600,12 +545,10 @@ function rHW(){
       <button class="hwdl" onclick="delHW(${h.id})">✕</button>
     </div>`;
   }).join('');
-  const tot=hws.length, dn=hws.filter(h=>h.dn).length, pct=tot>0?Math.round(dn/tot*100):0;
+  const tot=hws.length,dn=hws.filter(h=>h.dn).length,pct=tot>0?Math.round(dn/tot*100):0;
   document.getElementById('hwst').innerHTML=`
     <div style="display:flex;justify-content:space-between;font-size:.8rem;margin-bottom:7px;">
-      <span>總計 <b>${tot}</b></span>
-      <span style="color:var(--green)">完成 <b>${dn}</b></span>
-      <span style="color:var(--a)">待辦 <b>${tot-dn}</b></span>
+      <span>總計 <b>${tot}</b></span><span style="color:var(--green)">完成 <b>${dn}</b></span><span style="color:var(--a)">待辦 <b>${tot-dn}</b></span>
     </div>
     <div style="background:rgba(255,255,255,.06);border-radius:999px;height:5px;overflow:hidden;margin-bottom:5px;">
       <div style="width:${pct}%;height:100%;background:linear-gradient(90deg,var(--a),var(--a2));border-radius:999px;transition:width .5s"></div>
@@ -615,12 +558,10 @@ function rHW(){
 
 // ═══════════════ DRAW ═══════════════
 function getPool(){
-  const excl=document.getElementById('texcl').classList.contains('on');
-  const incS=document.getElementById('tsupp').classList.contains('on');
   return M.filter(m=>{
-    if(!incS&&m.sp&&!m.ic)return false;
-    if(excl&&dHist.includes(m.n))return false;
-    if(mExcl.has(m.n))return false;
+    if(!document.getElementById('tsupp').classList.contains('on')&&m.sp&&!m.ic) return false;
+    if(document.getElementById('texcl').classList.contains('on')&&dHist.includes(m.n)) return false;
+    if(mExcl.has(m.n)) return false;
     return true;
   });
 }
@@ -639,7 +580,7 @@ function hDraw(){
   },75);
 }
 async function stopDraw(){
-  clearInterval(dInt); drawing=false;
+  clearInterval(dInt);drawing=false;
   document.getElementById('dbtn').textContent='🎲 開始抽籤';
   document.getElementById('ddisp').classList.remove('spin');
   const nv=parseInt(document.getElementById('dnum').textContent);
@@ -647,18 +588,17 @@ async function stopDraw(){
     if(!dHist.includes(nv)) dHist.push(nv);
     rDH(); confetti();
     toast(`抽到 ${String(nv).padStart(2,'0')} 號 ${document.getElementById('dnm').textContent}！`,'🎉');
-    await saveDrawHist();
+    await svDraw();
   }
 }
 async function resetDraw(){
-  clearInterval(dInt); drawing=false;
+  clearInterval(dInt);drawing=false;
   document.getElementById('dbtn').textContent='🎲 開始抽籤';
   document.getElementById('ddisp').classList.remove('spin');
   document.getElementById('dnum').textContent='?';
   document.getElementById('dnm').textContent='點擊開始';
   document.getElementById('dsb').textContent='503 小隊';
-  dHist=[]; rDH(); toast('已重置','🔄');
-  await saveDrawHist();
+  dHist=[];rDH();toast('已重置','🔄');await svDraw();
 }
 function rDH(){
   const el=document.getElementById('dhist');
@@ -667,33 +607,107 @@ function rDH(){
 }
 function rExcW(){
   document.getElementById('excw').innerHTML=M.map(m=>
-    `<div class="exc${mExcl.has(m.n)?' on':''}" onclick="tExcl(${m.n})">${String(m.n).padStart(2,'0')} ${m.nm}</div>`
-  ).join('');
+    `<div class="exc${mExcl.has(m.n)?' on':''}" onclick="tExcl(${m.n})">${String(m.n).padStart(2,'0')} ${m.nm}</div>`).join('');
 }
 function tExcl(n){mExcl.has(n)?mExcl.delete(n):mExcl.add(n);rExcW();}
+
+// ═══════════════ DB VIEWER ═══════════════
+function rDB(){
+  const sorted=[...M].sort((a,b)=>(scores[b.n]||0)-(scores[a.n]||0));
+  const todo=hws.filter(h=>!h.dn), done=hws.filter(h=>h.dn);
+
+  document.getElementById('dbgrid').innerHTML=`
+  <div class="db-table">
+    <h3>👥 members <span class="cnt">${M.length} 筆</span></h3>
+    <table>
+      <tr><th>num</th><th>name</th><th>gender</th><th>support</th><th>in_class</th></tr>
+      ${M.map(m=>`<tr>
+        <td><span style="font-family:'Orbitron',monospace;font-size:.68rem;color:var(--a)">${String(m.n).padStart(2,'0')}</span></td>
+        <td>${m.nm}</td>
+        <td><span class="${m.g==='M'?'badge-m':'badge-f'}">${m.g}</span></td>
+        <td>${m.sp?'<span class="badge-pend">1</span>':'0'}</td>
+        <td>${m.ic?'<span class="badge-ok">1</span>':'<span class="badge-pend">0</span>'}</td>
+      </tr>`).join('')}
+    </table>
+  </div>
+
+  <div class="db-table">
+    <h3>🏆 scores <span class="cnt">${M.length} 筆</span></h3>
+    <table>
+      <tr><th>num</th><th>name</th><th>score</th></tr>
+      ${sorted.map((m,i)=>`<tr>
+        <td style="font-family:'Orbitron',monospace;font-size:.68rem;color:var(--a)">${String(m.n).padStart(2,'0')}</td>
+        <td>${m.nm}</td>
+        <td style="font-family:'Orbitron',monospace;font-weight:700;color:${i===0&&(scores[m.n]||0)>0?'var(--gold)':'var(--a)'}">${scores[m.n]||0}</td>
+      </tr>`).join('')}
+    </table>
+  </div>
+
+  <div class="db-table">
+    <h3>📋 score_log <span class="cnt">${scoreLog.length} 筆</span></h3>
+    <table>
+      <tr><th>names</th><th>delta</th><th>time</th></tr>
+      ${scoreLog.length===0?'<tr><td colspan="3" style="color:rgba(232,234,240,.25);text-align:center;padding:16px">尚無記錄</td></tr>':
+        scoreLog.slice(0,15).map(l=>`<tr>
+          <td>${l.names}</td>
+          <td class="log-d ${l.d>0?'pos':'neg'}">${l.d>0?'＋'+l.d:l.d}</td>
+          <td style="color:rgba(232,234,240,.3)">${l.t}</td>
+        </tr>`).join('')}
+    </table>
+  </div>
+
+  <div class="db-table">
+    <h3>📚 homeworks <span class="cnt">${hws.length} 筆</span></h3>
+    <table>
+      <tr><th>subject</th><th>title</th><th>due_date</th><th>is_done</th></tr>
+      ${hws.length===0?'<tr><td colspan="4" style="color:rgba(232,234,240,.25);text-align:center;padding:16px">尚無作業</td></tr>':
+        hws.map(h=>`<tr>
+          <td class="c-${h.sj}" style="font-weight:700">${h.sj}</td>
+          <td>${h.t}</td>
+          <td style="color:rgba(232,234,240,.4);font-size:.72rem">${h.dt||'—'}</td>
+          <td>${h.dn?'<span class="badge-ok">1 ✓</span>':'<span class="badge-pend">0</span>'}</td>
+        </tr>`).join('')}
+    </table>
+  </div>
+
+  <div class="db-table">
+    <h3>🎲 draw_history <span class="cnt">${dHist.length} 筆</span></h3>
+    <table>
+      <tr><th>num</th><th>name</th></tr>
+      ${dHist.length===0?'<tr><td colspan="2" style="color:rgba(232,234,240,.25);text-align:center;padding:16px">尚無抽籤紀錄</td></tr>':
+        dHist.map(n=>{const m=M.find(x=>x.n===n);return`<tr>
+          <td style="font-family:'Orbitron',monospace;color:var(--a)">${String(n).padStart(2,'0')}</td>
+          <td>${m?m.nm:''}</td>
+        </tr>`;}).join('')}
+    </table>
+  </div>
+
+  <div class="db-table">
+    <h3>🏅 officers <span class="cnt">${OFFICERS.length} 筆</span></h3>
+    <table>
+      <tr><th>emoji</th><th>role</th><th>role_en</th><th>rotating</th></tr>
+      ${OFFICERS.map(o=>`<tr>
+        <td>${o.e}</td>
+        <td style="font-weight:700">${o.r}</td>
+        <td style="color:rgba(232,234,240,.45)">${o.re}</td>
+        <td>${o.lead?'<span class="badge-pend">🔄 是</span>':'否'}</td>
+      </tr>`).join('')}
+    </table>
+  </div>`;
+}
 
 // ═══════════════ CONFETTI ═══════════════
 function confetti(){
   const w=document.getElementById('cfw'),cs=['#5e9fff','#a78bfa','#fbbf24','#34d399','#f87171','#fff'];
-  for(let i=0;i<55;i++){
-    const p=document.createElement('div'); p.className='cp';
-    p.style.cssText=`left:${Math.random()*100}%;width:${4+Math.random()*7}px;height:${4+Math.random()*7}px;background:${cs[Math.floor(Math.random()*cs.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation-duration:${.9+Math.random()*1.1}s;animation-delay:${Math.random()*.3}s;`;
-    w.appendChild(p); setTimeout(()=>p.remove(),2200);
-  }
+  for(let i=0;i<55;i++){const p=document.createElement('div');p.className='cp';p.style.cssText=`left:${Math.random()*100}%;width:${4+Math.random()*7}px;height:${4+Math.random()*7}px;background:${cs[Math.floor(Math.random()*cs.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation-duration:${.9+Math.random()*1.1}s;animation-delay:${Math.random()*.3}s;`;w.appendChild(p);setTimeout(()=>p.remove(),2200);}
 }
 
 // ═══════════════ TOAST ═══════════════
 let tt;
-function toast(m,ic='✨'){
-  const t=document.getElementById('toast');
-  t.textContent=ic+' '+m;
-  t.classList.add('show');
-  clearTimeout(tt);
-  tt=setTimeout(()=>t.classList.remove('show'),2400);
-}
+function toast(m,ic='✨'){const t=document.getElementById('toast');t.textContent=ic+' '+m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2400);}
 
 // ═══════════════ STARS ═══════════════
-const cv=document.getElementById('sc'),cx=cv.getContext('2d');
+const cv=document.getElementById('starCanvas'),cx=cv.getContext('2d');
 let W,H,stars=[],mouse={x:-9999,y:-9999};
 function rsz(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
 function iSt(){stars=[];for(let i=0;i<290;i++){const x=Math.random()*W,y=Math.random()*H;stars.push({x,y,ox:x,oy:y,sz:Math.random()*1.8+.2,op:Math.random()*.7+.2,sp:Math.random()*.5+.05,tw:Math.random()*Math.PI*2,ts:Math.random()*.018+.004});}}
@@ -702,16 +716,18 @@ rsz();iSt();aSt();
 window.addEventListener('resize',()=>{rsz();iSt();});
 
 // ═══════════════ CURSOR ═══════════════
-const cur2=document.getElementById('cur'),cring2=document.getElementById('cring');
+const cr=document.getElementById('cur'),rg=document.getElementById('cring');
 let rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;cur2.style.left=e.clientX+'px';cur2.style.top=e.clientY+'px';});
-(function aR(){rx+=(mouse.x-rx)*.1;ry+=(mouse.y-ry)*.1;cring2.style.left=rx+'px';cring2.style.top=ry+'px';requestAnimationFrame(aR);})();
+document.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;cr.style.left=e.clientX+'px';cr.style.top=e.clientY+'px';});
+(function aR(){rx+=(mouse.x-rx)*.1;ry+=(mouse.y-ry)*.1;rg.style.left=rx+'px';rg.style.top=ry+'px';requestAnimationFrame(aR);})();
 document.querySelectorAll('button,input,textarea,a').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur2.style.width='18px';cur2.style.height='18px';cur2.style.background='var(--a2)';cring2.style.width='48px';cring2.style.height='48px';cring2.style.borderColor='rgba(167,139,250,.6)';});
-  el.addEventListener('mouseleave',()=>{cur2.style.width='12px';cur2.style.height='12px';cur2.style.background='var(--a)';cring2.style.width='36px';cring2.style.height='36px';cring2.style.borderColor='rgba(94,159,255,.5)';});
+  el.addEventListener('mouseenter',()=>{cr.style.width='18px';cr.style.height='18px';cr.style.background='var(--a2)';rg.style.width='48px';rg.style.height='48px';rg.style.borderColor='rgba(167,139,250,.6)';});
+  el.addEventListener('mouseleave',()=>{cr.style.width='12px';cr.style.height='12px';cr.style.background='var(--a)';rg.style.width='36px';rg.style.height='36px';rg.style.borderColor='rgba(94,159,255,.5)';});
 });
 
-// ═══════════════ SCROLL REVEAL ═══════════════
+// ═══════════════ REVEAL ═══════════════
+new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.08})
+  .observe.bind(new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.08}));
 const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.08});
 document.querySelectorAll('.reveal').forEach(e=>ob.observe(e));
 
@@ -719,8 +735,7 @@ document.querySelectorAll('.reveal').forEach(e=>ob.observe(e));
 async function init(){
   rHome();
   await loadAll();
-  rSc();
-  rLog();
+  rSc(); rLog();
 }
 init();
 </script>
